@@ -16,8 +16,8 @@ public class Admin {
     private String email;
     private String role;
     @ManyToOne
-    @JoinColumn(name="user")
-    private User user;
+    @JoinColumn(name="customers")
+    private Customers customers;
     @OneToMany(mappedBy = "admin")
     private Set<Product> products;
 

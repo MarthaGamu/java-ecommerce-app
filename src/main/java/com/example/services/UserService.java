@@ -1,6 +1,6 @@
 package com.example.services;
 
-import com.example.pojo.User;
+import com.example.pojo.Customers;
 import com.example.util.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ public class UserService {
     @Autowired
     UserRepo repo;
 
-    public User insertUser(User user){
-        return repo.save(user);
+    public Customers insertUser(Customers customers){
+        return repo.save(customers);
     }
 }
 

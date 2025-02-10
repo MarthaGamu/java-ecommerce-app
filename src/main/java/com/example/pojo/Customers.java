@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "app_user")
-public class User {
+//@Table(name = "app_user")
+public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "customers")
     private Set<Admin> admins;
 
 

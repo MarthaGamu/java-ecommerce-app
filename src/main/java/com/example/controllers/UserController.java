@@ -1,6 +1,6 @@
 package com.example.controllers;
 
-import com.example.pojo.User;
+import com.example.pojo.Customers;
 import com.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +13,8 @@ public class UserController {
     UserService service;
 
     @PostMapping("/insertall")
-    public User insert(@RequestBody User user){
-        return service.insertUser(user);
+    public Customers insert(@RequestBody Customers customers){
+        return service.insertUser(customers);
     }
 }
 

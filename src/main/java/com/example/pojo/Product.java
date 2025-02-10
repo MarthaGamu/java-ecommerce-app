@@ -18,7 +18,8 @@ public class  Product {
             joinColumns = @JoinColumn(name="product_id"),
             inverseJoinColumns = @JoinColumn(name="admin_id")
     )
-    private Set<Admin> admin;
+    //private Set<Admin> admin;
+    private Admin admin;
     public int getId() {
         return Id;
     }
