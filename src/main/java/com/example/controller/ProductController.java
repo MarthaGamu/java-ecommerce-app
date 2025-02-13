@@ -42,6 +42,17 @@ public class ProductController {
         return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
 
+    @DeleteMapping("/deleteByid/{id}")
+    public String deletebyId(@PathVariable("id") int id){
+        if(productService.getByid(id).isPresent()) {
+            productService.deletebyId(id);
+            return "deleted the value " + id;
+        }
+        else {
+            return "data is not found";
+        }
+    }
+
     // update a product
     @PostMapping("/update/{productID}")
     public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
@@ -54,4 +65,29 @@ public class ProductController {
         productService.updateProduct(productID, productDto, category);
         return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
     }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<Object> getProductsByCategory(@PathVariable("categoryId") int categoryId) {
+        Optional<Category> optionalCategory = categoryService.readCategory(categoryId);
+        if (!optionalCategory.isPresent()) {
+            return new ResponseEntity<>(new ApiResponse(false, "Category not found"), HttpStatus.NOT_FOUND);
+        }
+        Category category = optionalCategory.get();
+        List<ProductDto> productDtos = productService.getProductsByCategory(category);
+        return new ResponseEntity<>(productDtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/category/{categoryId}/sort")
+    public ResponseEntity<?> getProductsByCategorySorted(@PathVariable("categoryId") int categoryId,
+                                                         @RequestParam boolean ascending) {
+        Optional<Category> optionalCategory = categoryService.readCategory(categoryId);
+        if (!optionalCategory.isPresent()) {
+            return new ResponseEntity<>(new ApiResponse(false, "Category not sorted"), HttpStatus.NOT_FOUND);
+        }
+        Category category = optionalCategory.get();
+        List<ProductDto> productDtos = productService.getProductsByCategorySorted(category, ascending);
+        return new ResponseEntity<>(productDtos, HttpStatus.OK);
+    }
+
 }
+
