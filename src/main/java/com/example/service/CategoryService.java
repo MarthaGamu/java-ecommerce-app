@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.pojo.Category;
 
+import com.example.pojo.Product;
 import com.example.repo.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class CategoryService {
     public Optional<Category> readCategory(Integer categoryId) {
         return categoryRepository.findById(categoryId);
     }
+
     public void updateCategory(Integer categoryID, Category newCategory) {
         Category category = categoryRepository.findById(categoryID).get();
         category.setCategoryName(newCategory.getCategoryName());
